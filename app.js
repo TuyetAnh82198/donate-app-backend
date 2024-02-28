@@ -9,12 +9,14 @@ const store = new MongoDBStore({
 });
 const mongoose = require("mongoose");
 const path = require("path");
+const compression = require("compression");
 
 const donates = require("./routes/donates.js");
 const users = require("./routes/users.js");
 
 const app = express();
 
+app.use(compression());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,7 +34,7 @@ app.use(
     store: store,
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "lax",
+      sameSite: "none",
     },
   })
 );
