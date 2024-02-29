@@ -33,7 +33,16 @@ const add = async (req, res) => {
 const get8Donates = async (req, res) => {
   try {
     const pageSize = 8;
-    const donates = await DonateModel.find()
+    const donates = await DonateModel.find({
+      $or: [
+        {
+          isDelete: false,
+        },
+        {
+          isDelete: { $exists: false },
+        },
+      ],
+    })
       .sort({ endDate: 1 })
       .skip((req.params.page - 1) * pageSize)
       .limit(pageSize);
