@@ -98,6 +98,7 @@ const login = async (req, res) => {
       errors.array().forEach((err) => errs.push(err.msg));
       return res.status(400).json({ errMsg: errs[0] });
     } else {
+      // console.log(req.body.gmail);
       if (req.body.gmail) {
         const existingUser = await UserModel.findOne({ email: req.body.gmail });
         if (!existingUser) {
