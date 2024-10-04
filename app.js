@@ -34,7 +34,7 @@ app.use(
     store: store,
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "lax", //"lax" if it's http
+      sameSite: "none", //"lax" if it's http
     },
   })
 );
