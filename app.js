@@ -27,13 +27,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
-  const allowedOrigins = process.env.CLIENT;
-  const origin = req.headers.origin;
-  if (allowedOrigins === origin) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
 app.use(
